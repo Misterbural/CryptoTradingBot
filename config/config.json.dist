@@ -1,0 +1,17 @@
+{
+    "strategies": {
+        "alligator": {
+            "apiKey": "",
+            "secret": "",
+            "subAccountName": "",
+            "slack": {
+                "url": "",
+                "username": "",
+                "channel": "",
+            },
+            "options":{
+                "tpEnabled": false
+            }
+        }
+    }
+}
