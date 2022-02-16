@@ -7,7 +7,7 @@ Projet basé sur le repo :
 ## Installation
 
 Mise en place du projet:  
->git clone https://github.com/Misterbural/CryptoRobot.git
+>git clone https://github.com/Misterbural/CryptoTradingBot.git
 
 Installation des dépendances:  
 >pip install -r requirements.txt  
@@ -34,7 +34,7 @@ Une fois que la stratégie est prête, programmez le lancement de la stratégie 
 
 https://ftx.com/profile#a=11081166
 
-### Améliorations envisagé
+### Améliorations envisagées
 
 Ajouter message Slack proprement
 
