@@ -1,5 +1,5 @@
 import sys
-sys.path.append('./CryptoBot')
+sys.path.append('./CryptoTradingBot')
 from utilities.spot_ftx import SpotFtx
 from utilities.conf_loader import ConfLoader
 from utilities.bot_logging import BotLogging
@@ -11,7 +11,7 @@ import pandas_ta as pda
 now = datetime.now()
 log_prefix = 'SUPERTREND BTC [' + now.strftime("%d-%m-%Y %H:%M:%S") + ']'
 
-with open('./CryptoBot/config/config.json', 'r') as fconfig:
+with open('./CryptoTradingBot/config/config.json', 'r') as fconfig:
     configJson = json.load(fconfig)
     config = ConfLoader(configJson)
 

@@ -1,5 +1,5 @@
 import sys
-sys.path.append('./CryptoBot')
+sys.path.append('./CryptoTradingBot')
 from utilities.spot_ftx import SpotFtx
 from utilities.conf_loader import ConfLoader
 from utilities.bot_logging import BotLogging
@@ -8,11 +8,11 @@ import json
 from datetime import datetime
 import time
 
-with open('./CryptoBot/config/config.json', 'r') as fconfig:
+with open('./CryptoTradingBot/config/config.json', 'r') as fconfig:
     configJson = json.load(fconfig)
     config = ConfLoader(configJson)
 
-with open('./CryptoBot/config/pair_list.json', 'r') as fpairJson:
+with open('./CryptoTradingBot/config/pair_list.json', 'r') as fpairJson:
     pairJson = json.load(fpairJson)
     fpairJson.close()
 
