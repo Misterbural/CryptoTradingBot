@@ -36,7 +36,7 @@ minUsdForBuy = 25
 
 # -- Hyper parameters --
 stochOverBought = 0.85
-stochOverSold = 0.25
+stochOverSold = 0.2
 trixLength = 9
 trixSignal = 21
 
