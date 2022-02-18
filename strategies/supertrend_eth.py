@@ -31,8 +31,8 @@ timeframe = '1h'
 fiatSymbol = 'USDT'
 cryptoSymbol = 'ETH'
 pair = 'ETH/USDT'
-minTokenForSell = 0.001
-minUsdForBuy = 25
+minTokenForSell = 0.01
+minUsdForBuy = 50
 
 # -- Hyper parameters --
 stochOverBought = 0.82

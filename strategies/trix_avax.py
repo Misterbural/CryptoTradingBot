@@ -31,8 +31,8 @@ timeframe = '1h'
 fiatSymbol = 'USDT'
 cryptoSymbol = 'AVAX'
 pair = 'AVAX/USDT'
-minTokenForSell = 0.001
-minUsdForBuy = 25
+minTokenForSell = 0.1
+minUsdForBuy = 50
 
 # -- Hyper parameters --
 stochOverBought = 0.85
