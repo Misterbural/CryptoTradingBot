@@ -81,7 +81,7 @@ elif sellCondition(df.iloc[-2]):
     avaxBalance = ftx.get_balance_of_one_coin('AVAX')
     if float(avaxBalance) > minTokenForSell:
         sell = ftx.place_market_order(pair, 'sell', avaxBalance)
-        print(log_prefix + " => SELL" + cryptoSymbol + ' at ' + str(actualPrice) + "$")
+        print(log_prefix + " => SELL " + cryptoSymbol + ' at ' + str(actualPrice) + "$")
         logger.send_message(log_prefix + " => SELL" + cryptoSymbol + ' at ' + str(actualPrice) + "$")
     else:
         print(log_prefix + " => If you give me more " + cryptoSymbol + " I will sell it")
