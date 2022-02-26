@@ -59,7 +59,7 @@ def buyCondition(row):
         return False
 
 def sellCondition(row):
-    if row['TRIX_HISTO'] < 0 and row['STOCH_RSI'] > stochOverSold:
+    if row['TRIX_HISTO'] < 0:
         return True
     else:
         return False

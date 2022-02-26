@@ -35,7 +35,7 @@ minTokenForSell = 0.01
 minUsdForBuy = 50
 
 # -- Hyper parameters --
-stochOverBought = 0.82
+stochOverBought = 0.85
 stochOverSold = 0.25
 
 df = ftx.get_last_historical(pair, timeframe, 210)
@@ -75,7 +75,7 @@ def buyCondition(row):
 
 # -- Condition to SELL market --
 def sellCondition(row):
-    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] < 1 and row['STOCH_RSI'] > stochOverSold:
+    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] < 1:
         return True
     else:
         return False

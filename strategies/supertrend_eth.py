@@ -75,7 +75,7 @@ def buyCondition(row):
 
 # -- Condition to SELL market --
 def sellCondition(row):
-    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] < 1 and row['STOCH_RSI'] > stochOverSold:
+    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] < 1:
         return True
     else:
         return False
