@@ -38,7 +38,7 @@ minUsdForBuy = 50
 stochOverBought = 0.85
 stochOverSold = 0.25
 trixLength = 9
-trixSignal = 21
+trixSignal = 19
 
 df = ftx.get_last_historical(pair, timeframe, 100)
 

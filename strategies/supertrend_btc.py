@@ -35,7 +35,7 @@ minTokenForSell = 0.01
 minUsdForBuy = 50
 
 # -- Hyper parameters --
-stochOverBought = 0.85
+stochOverBought = 0.88
 stochOverSold = 0.25
 
 df = ftx.get_last_historical(pair, timeframe, 210)
@@ -43,20 +43,20 @@ df = ftx.get_last_historical(pair, timeframe, 210)
 df['EMA90'] = ta.trend.ema_indicator(df['close'], 90)
 df['STOCH_RSI'] = ta.momentum.stochrsi(df['close'])
 
-ST_length = 20
+ST_length = 21
 ST_multiplier = 3.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION1'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]
 
-ST_length = 20
+ST_length = 19
 ST_multiplier = 4.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION2'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]
 
-ST_length = 40
-ST_multiplier = 8.0
+ST_length = 47
+ST_multiplier = 7.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION3'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]

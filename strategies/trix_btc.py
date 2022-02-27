@@ -35,10 +35,10 @@ minTokenForSell = 0.01
 minUsdForBuy = 50
 
 # -- Hyper parameters --
-stochOverBought = 0.82
+stochOverBought = 0.77
 stochOverSold = 0.2
-trixLength = 9
-trixSignal = 21
+trixLength = 11
+trixSignal = 20
 
 df = ftx.get_last_historical(pair, timeframe, 100)
 

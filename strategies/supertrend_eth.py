@@ -67,7 +67,7 @@ actualPrice = df['close'].iloc[-1]
 
 # -- Condition to BUY market --
 def buyCondition(row):
-    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA90'] and row['STOCH_RSI'] < stochOverBought:
+    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA90']:
         return True
     else:
         return False
