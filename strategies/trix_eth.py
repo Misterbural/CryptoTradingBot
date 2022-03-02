@@ -52,6 +52,8 @@ coinBalance = ftx.get_all_balance()
 coinInUsd = ftx.get_all_balance_in_usd()
 actualPrice = df['close'].iloc[-1]
 
+print(log_prefix + ' Last candle complete load ' + str(df.iloc[-2]))
+
 def buyCondition(row):
     if row['TRIX_HISTO'] > 0 and row['STOCH_RSI'] < stochOverBought:
         return True

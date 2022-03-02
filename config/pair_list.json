@@ -2,20 +2,12 @@
     "ftxClassicPair": [
         "AVAX/USDT",
         "SOL/USDT",
+        "ATOM/USDT",
+        "LUNA/USDT",
         "BNB/USDT",
         "FTT/USDT",
         "DOT/USDT",
         "BTC/USDT",
-        "ETH/USDT",
-        "LTC/USDT",
-        "LINK/USDT",
-        "AAVE/USDT",
-        "UNI/USDT",
-        "SUSHI/USDT",
-        "DOGE/USDT",
-        "XRP/USDT", 
-        "SRM/USDT",
-        "BCH/USDT",
-        "TRX/USDT"
+        "ETH/USDT"
     ]
 }

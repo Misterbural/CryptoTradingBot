@@ -9,36 +9,36 @@ from datetime import datetime
 import pandas_ta as pda
 
 now = datetime.now()
-log_prefix = 'TRIX AVAX [' + now.strftime("%d-%m-%Y %H:%M:%S") + ']'
+log_prefix = 'TRIX LUNA [' + now.strftime("%d-%m-%Y %H:%M:%S") + ']'
 
 with open('./CryptoTradingBot/config/config.json', 'r') as fconfig:
     configJson = json.load(fconfig)
     config = ConfLoader(configJson)
 
 logger = BotLogging(
-    config.strategies.TrixAVAX.slack.url,
-    config.strategies.TrixAVAX.slack.username,
-    config.strategies.TrixAVAX.slack.channel
+    config.strategies.TrixLUNA.slack.url,
+    config.strategies.TrixLUNA.slack.username,
+    config.strategies.TrixLUNA.slack.channel
 )
 
 ftx = SpotFtx(
-    apiKey=config.strategies.TrixAVAX.apiKey,
-    secret=config.strategies.TrixAVAX.secret,
-    subAccountName=config.strategies.TrixAVAX.subAccountName
+    apiKey=config.strategies.TrixLUNA.apiKey,
+    secret=config.strategies.TrixLUNA.secret,
+    subAccountName=config.strategies.TrixLUNA.subAccountName
 )
 
 timeframe = '1h'
 fiatSymbol = 'USDT'
-cryptoSymbol = 'AVAX'
-pair = 'AVAX/USDT'
-minTokenForSell = 0.1
+cryptoSymbol = 'LUNA'
+pair = 'LUNA/USDT'
+minTokenForSell = 0.01
 minUsdForBuy = 50
 
 # -- Hyper parameters --
 stochOverBought = 0.85
-stochOverSold = 0.2
-trixLength = 9
-trixSignal = 17
+stochOverSold = 0.25
+trixLength = 8
+trixSignal = 18
 
 df = ftx.get_last_historical(pair, timeframe, 100)
 
@@ -80,9 +80,9 @@ if buyCondition(df.iloc[-2]):
         print(log_prefix + " => If you give me more USD I will buy more " + cryptoSymbol)
 
 elif sellCondition(df.iloc[-2]):
-    avaxBalance = ftx.get_balance_of_one_coin('AVAX')
-    if float(avaxBalance) > minTokenForSell:
-        sell = ftx.place_market_order(pair, 'sell', avaxBalance)
+    lunaBalance = ftx.get_balance_of_one_coin('LUNA')
+    if float(lunaBalance) > minTokenForSell:
+        sell = ftx.place_market_order(pair, 'sell', lunaBalance)
         print(log_prefix + " => SELL " + cryptoSymbol + ' at ' + str(actualPrice) + "$")
         logger.send_message(log_prefix + " => SELL " + cryptoSymbol + ' at ' + str(actualPrice) + "$")
     else:

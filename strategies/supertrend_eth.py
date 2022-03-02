@@ -65,6 +65,8 @@ coinBalance = ftx.get_all_balance()
 coinInUsd = ftx.get_all_balance_in_usd()
 actualPrice = df['close'].iloc[-1]
 
+print(log_prefix + ' Last candle complete load ' + str(df.iloc[-2]))
+
 # -- Condition to BUY market --
 def buyCondition(row):
     if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA90']:
