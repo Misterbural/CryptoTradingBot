@@ -95,10 +95,10 @@ if buyCondition(df.iloc[-2]):
     else:
         print(log_prefix + " => If you give me more USD I will buy more " + cryptoSymbol)
 elif sellCondition(df.iloc[-2]):
-    ethBalance = ftx.get_balance_of_one_coin('BTC')
+    ethBalance = ftx.get_balance_of_one_coin('ETH')
     if float(ethBalance) > minTokenForSell:
         sell = ftx.place_market_order(pair, 'sell', ethBalance)
-        print(log_prefix + " => SELL" + cryptoSymbol + ' at ' + str(actualPrice) + "$")
+        print(log_prefix + " => SELL " + cryptoSymbol + ' at ' + str(actualPrice) + "$")
         logger.send_message(log_prefix + " => SELL " + cryptoSymbol + ' at ' + str(actualPrice) + "$")
     else:
         print(log_prefix + " => If you give me more " + cryptoSymbol + " I will sell it")
