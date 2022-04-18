@@ -38,9 +38,9 @@ minUsdForBuy = 50
 stochOverBought = 0.85
 stochOverSold = 0.2
 trixLength = 9
-trixSignal = 17
+trixSignal = 19
 
-df = ftx.get_last_historical(pair, timeframe, 100)
+df = ftx.get_last_historical(pair, timeframe, 300)
 
 df['TRIX'] = ta.trend.ema_indicator(ta.trend.ema_indicator(ta.trend.ema_indicator(close=df['close'], window=trixLength), window=trixLength), window=trixLength)
 df['TRIX_PCT'] = df["TRIX"].pct_change()*100

@@ -35,12 +35,12 @@ minTokenForSell = 0.01
 minUsdForBuy = 50
 
 # -- Hyper parameters --
-stochOverBought = 0.77
+stochOverBought = 0.90
 stochOverSold = 0.2
 trixLength = 11
 trixSignal = 20
 
-df = ftx.get_last_historical(pair, timeframe, 100)
+df = ftx.get_last_historical(pair, timeframe, 300)
 
 df['TRIX'] = ta.trend.ema_indicator(ta.trend.ema_indicator(ta.trend.ema_indicator(close=df['close'], window=trixLength), window=trixLength), window=trixLength)
 df['TRIX_PCT'] = df["TRIX"].pct_change()*100

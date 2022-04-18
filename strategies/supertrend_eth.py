@@ -38,7 +38,7 @@ minUsdForBuy = 50
 stochOverBought = 0.82
 stochOverSold = 0.25
 
-df = ftx.get_last_historical(pair, timeframe, 100)
+df = ftx.get_last_historical(pair, timeframe, 1000)
 
 df['EMA90']=ta.trend.ema_indicator(df['close'], 90)
 df['STOCH_RSI']=ta.momentum.stochrsi(df['close'])

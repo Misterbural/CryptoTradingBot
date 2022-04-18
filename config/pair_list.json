@@ -8,6 +8,16 @@
         "FTT/USDT",
         "DOT/USDT",
         "BTC/USDT",
-        "ETH/USDT"
+        "ETH/USDT",
+        "LTC/USDT",
+        "XRP/USDT",
+        "RUNE/USDT",
+        "LINK/USDT",
+        "DOGE/USDT",
+        "BCH/USDT",
+        "SUSHI/USDT",
+        "SRM/USDT",
+        "TRX/USDT",
+        "AAVE/USDT"
     ]
 }
