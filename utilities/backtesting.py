@@ -288,7 +288,7 @@ class Backtesting():
     def plot_wallet_vs_price(self, dfTrades):
         dfTrades = dfTrades.set_index(dfTrades['date'])
         dfTrades.index = pd.to_datetime(dfTrades.index)
-        dfTrades[['wallet', 'price']].plot(subplots=True, figsize=(20, 10), logy=True)
+        dfTrades[['wallet', 'price']].plot(subplots=True, figsize=(20, 10))
         print("\n----- Plot -----")
 
     def plot_wallet_evolution(self, dfTrades):
