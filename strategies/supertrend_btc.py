@@ -7,6 +7,7 @@ import ta
 import json
 from datetime import datetime
 import pandas_ta as pda
+import time
 
 now = datetime.now()
 log_prefix = 'SUPERTREND BTC [' + now.strftime("%d-%m-%Y %H:%M:%S") + ']'
@@ -26,6 +27,9 @@ ftx = SpotFtx(
     apiKey=config.strategies.mainAccount.apiKey,
     secret=config.strategies.mainAccount.secret
 )
+
+# Add sleep to avoid problem with parallel process
+time.sleep(5)
 
 # Constant
 timeframe = '1h'
