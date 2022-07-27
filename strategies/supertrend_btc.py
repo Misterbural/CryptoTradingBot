@@ -29,7 +29,7 @@ ftx = SpotFtx(
 )
 
 # Add sleep to avoid problem with parallel process
-time.sleep(5)
+time.sleep(3)
 
 # Constant
 timeframe = '1h'
@@ -37,33 +37,30 @@ fiatSymbol = 'USDT'
 cryptoSymbol = 'BTC'
 pair = 'BTC/USDT'
 minUsdForBuy = 50
-btcToKeep = 0.42139641
+btcToKeep = 0.42149381
 btcMarge = 0.01
-ethToKeep = 4.24107062
+ethToKeep = 4.24305096
 ethMarge = 0.1
 
 # -- Set indicators --
-stochOverBought = 0.88
-stochOverSold = 0.25
-
+# stochOverBought = 0.88
 df = ftx.get_last_historical(pair, timeframe, 1000)
 
-df['EMA90'] = ta.trend.ema_indicator(df['close'], 90)
-df['STOCH_RSI'] = ta.momentum.stochrsi(df['close'])
+df['EMA80'] = ta.trend.ema_indicator(df['close'], 80)
 
-ST_length = 21
+ST_length = 17
 ST_multiplier = 3.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION1'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]
 
-ST_length = 19
+ST_length = 12
 ST_multiplier = 4.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION2'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]
 
-ST_length = 47
+ST_length = 41
 ST_multiplier = 7.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
@@ -73,7 +70,7 @@ print(log_prefix + ' Last candle complete load ' + str(df.iloc[-2]))
 
 # -- Condition to BUY market --
 def buyCondition(row):
-    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA90'] and row['STOCH_RSI'] < stochOverBought:
+    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA80']:
         return True
     else:
         return False

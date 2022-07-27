@@ -33,32 +33,29 @@ fiatSymbol = 'USDT'
 cryptoSymbol = 'ETH'
 pair = 'ETH/USDT'
 minUsdForBuy = 50
-btcToKeep = 0.42139641
+btcToKeep = 0.42149381
 btcMarge = 0.01
-ethToKeep = 4.24107062
+ethToKeep = 4.24305096
 ethMarge = 0.1
 
 # -- Set indicators --
-stochOverSold = 0.25
-
 df = ftx.get_last_historical(pair, timeframe, 1000)
 
-df['EMA90'] = ta.trend.ema_indicator(df['close'], 90)
-df['STOCH_RSI'] = ta.momentum.stochrsi(df['close'])
+df['EMA95'] = ta.trend.ema_indicator(df['close'], 95)
 
-ST_length = 20
+ST_length = 11
 ST_multiplier = 3.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION1'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]
 
-ST_length = 20
+ST_length = 22
 ST_multiplier = 4.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
 df['SUPER_TREND_DIRECTION2'] = superTrend['SUPERTd_'+str(ST_length)+"_"+str(ST_multiplier)]
 
-ST_length = 40
+ST_length = 64
 ST_multiplier = 8.0
 superTrend = pda.supertrend(df['high'], df['low'], df['close'], length=ST_length, multiplier=ST_multiplier)
 df['SUPER_TREND'] = superTrend['SUPERT_'+str(ST_length)+"_"+str(ST_multiplier)]
@@ -68,7 +65,7 @@ print(log_prefix + ' Last candle complete load ' + str(df.iloc[-2]))
 
 # -- Condition to BUY market --
 def buyCondition(row):
-    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA90']:
+    if row['SUPER_TREND_DIRECTION1'] + row['SUPER_TREND_DIRECTION2'] + row['SUPER_TREND_DIRECTION3'] >= 1 and row['close'] > row['EMA95']:
         return True
     else:
         return False
