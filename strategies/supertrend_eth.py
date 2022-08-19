@@ -7,6 +7,7 @@ import ta
 import json
 from datetime import datetime
 import pandas_ta as pda
+import time
 
 now = datetime.now()
 log_prefix = 'SUPERTREND ETH [' + now.strftime("%d-%m-%Y %H:%M:%S") + ']'
@@ -27,16 +28,21 @@ ftx = SpotFtx(
     secret=config.strategies.mainAccount.secret
 )
 
+# Add sleep to avoid problem with parallel process
+time.sleep(3)
+
 # Constant
 timeframe = '1h'
 fiatSymbol = 'USDT'
 cryptoSymbol = 'ETH'
 pair = 'ETH/USDT'
 minUsdForBuy = 50
-btcToKeep = 0.42149381
+btcToKeep = 0.42175796
 btcMarge = 0.01
-ethToKeep = 4.24305096
+ethToKeep = 4.24594127
 ethMarge = 0.1
+avaxToKeep = 50
+avaxMarge = 1
 
 # -- Set indicators --
 df = ftx.get_last_historical(pair, timeframe, 1000)
@@ -80,6 +86,7 @@ def sellCondition(row):
 
 btcBalance = ftx.get_balance_of_one_coin('BTC')
 ethBalance = ftx.get_balance_of_one_coin('ETH')
+avaxBalance = ftx.get_balance_of_one_coin('AVAX')
 usdBalance = ftx.get_balance_of_one_coin('USDT')
 
 # Check market conditions
@@ -87,8 +94,12 @@ if buyCondition(df.iloc[-2]) == True:
     if float(usdBalance) > minUsdForBuy and float(ethBalance) < ethToKeep + ethMarge:
         buyPrice = float(ftx.convert_price_to_precision(pair, ftx.get_bid_ask_price(pair)['ask']))
         buyAmount = ftx.convert_amount_to_precision(pair, usdBalance / buyPrice)
-        if btcBalance < btcToKeep + btcMarge:
-            buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 55) / buyPrice)
+        if avaxBalance < avaxToKeep + avaxMarge and btcBalance < btcToKeep + btcMarge :
+            buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 50) / buyPrice)
+        elif avaxBalance > avaxToKeep + avaxMarge and btcBalance < btcToKeep + btcMarge :
+            buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 56) / buyPrice)
+        elif avaxBalance < avaxToKeep + avaxMarge and btcBalance > btcToKeep + btcMarge :
+            buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 83) / buyPrice)
         buy = ftx.place_market_order(pair, 'buy', buyAmount)
         print(log_prefix + " => BUY " + cryptoSymbol + ' at ' + str(buyPrice) + "$")
         logger.send_message(log_prefix + " => BUY " + cryptoSymbol + ' at ' + str(buyPrice) + "$")
