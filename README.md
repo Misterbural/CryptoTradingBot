@@ -30,10 +30,6 @@ Renommez config.json.dist en config.json et renseignez avec vos clés API à des
 
 Une fois que la stratégie est prête, programmez le lancement de la stratégie via crontab en fonction de la timeframe de la stratégie
 
-### Se créer un compte FTX
-
-https://ftx.com/profile#a=11081166
-
 ### Améliorations envisagées
 
 Ajouter message Slack proprement

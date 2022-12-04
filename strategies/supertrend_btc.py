@@ -92,14 +92,14 @@ usdBalance = ftx.get_balance_of_one_coin('USDT')
 
 # Check market conditions
 if buyCondition(df.iloc[-2]) == True:
-    if float(usdBalance) > minUsdForBuy and float(btcBalance) < btcToKeep + btcMarge:
+    if float(usdBalance) > minUsdForBuy and float(btcBalance) < btcMarge:
         buyPrice = float(ftx.convert_price_to_precision(pair, ftx.get_bid_ask_price(pair)['ask']))
         buyAmount = ftx.convert_amount_to_precision(pair, usdBalance / buyPrice)
-        if avaxBalance < avaxToKeep + avaxMarge and ethBalance < ethToKeep + ethMarge :
+        if avaxBalance < avaxMarge and ethBalance < ethMarge :
             buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 40) / buyPrice)
-        elif avaxBalance > avaxToKeep + avaxMarge and ethBalance < ethToKeep + ethMarge :
+        elif avaxBalance > avaxMarge and ethBalance < ethMarge :
             buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 45) / buyPrice)
-        elif avaxBalance < avaxToKeep + avaxMarge and ethBalance > ethToKeep + ethMarge :
+        elif avaxBalance < avaxMarge and ethBalance > ethMarge :
             buyAmount = ftx.convert_amount_to_precision(pair, (usdBalance / 100 * 80) / buyPrice)
         buy = ftx.place_market_order(pair, 'buy', buyAmount)
         print(log_prefix + " => BUY " + cryptoSymbol + ' at ' + str(buyPrice) + "$")
@@ -108,9 +108,9 @@ if buyCondition(df.iloc[-2]) == True:
         print(log_prefix + " => If you give me more USD I will buy more " + cryptoSymbol)
 
 elif sellCondition(df.iloc[-2]) == True:
-    if float(btcBalance) > btcToKeep + btcMarge:
+    if float(btcBalance) > btcMarge:
         sellPrice = float(ftx.convert_price_to_precision(pair, ftx.get_bid_ask_price(pair)['bid']))
-        quantityTotoSell = btcBalance - btcToKeep
+        quantityTotoSell = btcBalance
         sell = ftx.place_market_order(pair, 'sell', quantityTotoSell)
         print(log_prefix + " => SELL" + cryptoSymbol + ' at ' + str(sellPrice) + "$")
         logger.send_message(log_prefix + " => SELL " + cryptoSymbol + ' at ' + str(sellPrice) + "$")
